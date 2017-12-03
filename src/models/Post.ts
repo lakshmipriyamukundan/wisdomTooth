@@ -2,8 +2,44 @@ import { Schema, model } from 'mongoose';
 
 let PostSchema : Schema = new Schema({
 
-    createdAt: Date,
-    updatedAt: Date
+    createdAt: {
+        type: Date,
+        default: Date.now()
+    },
+    updatedAt: {
+        type: Date, 
+        default: Date.now()
+    },
+    author: {
+        type: Schema.Types.ObjectId,
+        ref: 'User',
+        required: true,
+    },
+    title: {
+        type: 'String',
+        required: true
+    },
+    description: {
+        type: String,
+        required: true
+    },
+    status: {
+        type: String,
+        enum: ['Draft', 'Post', 'Published'],
+        default: 'Draft'
+    },
+    slug: {
+        type: String,
+        default: '',
+        required: true,
+        unique: true,
+        trim: true
+    
+    },
+    image: {
+        type: String,
+        default: ''
+    }
 })
 
 export default model('Post', PostSchema);
