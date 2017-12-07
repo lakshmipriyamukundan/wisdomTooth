@@ -7,6 +7,8 @@ import * as logger from 'morgan';
 import * as helmet from 'helmet';
 import * as cors from 'cors';
 import * as path from 'path';
+import * as expressValidator from 'express-validator';
+import * as Promise from 'bluebird'
 
 //import routes or controllers
 
@@ -24,10 +26,12 @@ class Server {
 
         const MONGO_URL : string = 'mongodb://localhost/wisdom-tooth'; 
         mongoose.connect(MONGO_URL);
+        mongoose.Promise = Promise
 
         // express middleware
         this.app.use(bodyParser.urlencoded({ extended: true }));
         this.app.use(bodyParser.json());
+        this.app.use(expressValidator)
         this.app.use(cookieParser());
         this.app.use(logger('dev'));
         this.app.use(compression());
