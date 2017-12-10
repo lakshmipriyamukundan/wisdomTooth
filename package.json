@@ -4,6 +4,10 @@
   "main": "index.js",
   "author": "Lakshmipriya",
   "license": "MIT",
+  "scripts": {
+    "start" : "node ./build/index.js",
+    "server" : "tsc && nodemon ./build/index.js"
+  },
   "dependencies": {
     "bluebird": "^3.5.1",
     "body-parser": "^1.18.2",
