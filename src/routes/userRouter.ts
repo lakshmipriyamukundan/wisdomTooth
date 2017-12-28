@@ -1,4 +1,5 @@
 import { Router } from 'express'
+import { userClass } from '../controllers/auth/login'
 
 class UserRouter {
 
@@ -10,6 +11,6 @@ class UserRouter {
     }
 
     routes() {
-        this.router.post('/create', )
+        this.router.post('/create', userClass.save )
     }
 }

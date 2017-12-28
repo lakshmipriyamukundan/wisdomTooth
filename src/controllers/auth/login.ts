@@ -47,4 +47,4 @@ class UserClass {
 
 const userClass = new UserClass();
 
-export default userClass.save(req, res);
+export { userClass }
