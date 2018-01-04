@@ -54,9 +54,9 @@ class Server {
     public routes(): void {
         const router: express.Router = express.Router();
         
-            this.app.use('/', router);
+        // this.app.use('/', router);
            
-            this.app.use('/apis', userRouter);
+          this.app.use('/apis', userRouter);
     }
 }
 

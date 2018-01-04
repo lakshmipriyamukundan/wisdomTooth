@@ -16,7 +16,10 @@ class UserRouter {
 
     public routes():void {
         console.log('>>>>>>>>>>>>>>>.')
-        this.router.get('/', this.sum)
+        this.router.get('/', (req: Request, res: Response) => {
+            console.log('fdsgdejfhgjs');
+            res.send('Haiii');
+        })
        // this.router.post('/create', userClass.save )
     }
 }

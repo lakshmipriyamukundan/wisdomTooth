@@ -11,7 +11,10 @@ class UserRouter {
     }
     routes() {
         console.log('>>>>>>>>>>>>>>>.');
-        this.router.get('/', this.sum);
+        this.router.get('/', (req, res) => {
+            console.log('fdsgdejfhgjs');
+            res.send('Haiii');
+        });
         // this.router.post('/create', userClass.save )
     }
 }
