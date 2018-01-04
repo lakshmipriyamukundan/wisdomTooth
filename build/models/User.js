@@ -1,9 +1,9 @@
-import { Schema, model } from 'mongoose';
-
-let UserSchema : Schema = new Schema({
-
+"use strict";
+Object.defineProperty(exports, "__esModule", { value: true });
+const mongoose_1 = require("mongoose");
+let UserSchema = new mongoose_1.Schema({
     createdAt: {
-        type: Date, 
+        type: Date,
         default: Date.now()
     },
     updatedAt: {
@@ -41,11 +41,10 @@ let UserSchema : Schema = new Schema({
         type: 'String',
         default: 'Local'
     }
-})
-
+});
 UserSchema.pre('save', (next) => {
     this.fullName = this.firstName + ' ' + this.lastName;
-    next()
-})
-
-export default model('User', UserSchema);
+    next();
+});
+exports.default = mongoose_1.model('User', UserSchema);
+//# sourceMappingURL=User.js.map

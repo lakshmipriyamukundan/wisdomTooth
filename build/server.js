@@ -9,6 +9,7 @@ const logger = require("morgan");
 const helmet = require("helmet");
 const cors = require("cors");
 const expressValidator = require("express-validator");
+const userRouter_1 = require("./routes/userRouter");
 //import routes or controllers
 class Server {
     constructor() {
@@ -30,7 +31,7 @@ class Server {
         this.app.use(cors());
         // cors
         this.app.use((req, res, next) => {
-            res.header('Access-Control-Allow-Origin', 'http://localhost:3000');
+            res.header('Access-Control-Allow-Origin', 'http://localhost:6000');
             res.header('Access-Control-Allow-Methods', 'GET, POST, PUT, DELETE, OPTIONS');
             res.header('Access-Control-Allow-Headers', 'Origin, X-Requested-With, Content-Type, Accept, Authorization, Access-Control-Allow-Credentials');
             res.header('Access-Control-Allow-Credentials', 'true');
@@ -40,6 +41,7 @@ class Server {
     routes() {
         const router = express.Router();
         this.app.use('/', router);
+        this.app.use('/apis', userRouter_1.default);
     }
 }
 exports.default = new Server().app;

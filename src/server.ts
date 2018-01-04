@@ -9,6 +9,8 @@ import * as cors from 'cors';
 import * as path from 'path';
 import * as expressValidator from 'express-validator';
 
+import userRouter from './routes/userRouter';
+
 
 //import routes or controllers
 
@@ -40,7 +42,7 @@ class Server {
 
         // cors
     this.app.use((req, res, next) => {
-        res.header('Access-Control-Allow-Origin', 'http://localhost:3000');
+        res.header('Access-Control-Allow-Origin', 'http://localhost:6000');
         res.header('Access-Control-Allow-Methods', 'GET, POST, PUT, DELETE, OPTIONS');
         res.header('Access-Control-Allow-Headers', 'Origin, X-Requested-With, Content-Type, Accept, Authorization, Access-Control-Allow-Credentials');
         res.header('Access-Control-Allow-Credentials', 'true');
@@ -53,6 +55,8 @@ class Server {
         const router: express.Router = express.Router();
         
             this.app.use('/', router);
+           
+            this.app.use('/apis', userRouter);
     }
 }
 
