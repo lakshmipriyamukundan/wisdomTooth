@@ -56,7 +56,7 @@ class Server {
         
         // this.app.use('/', router);
            
-          this.app.use('/apis', userRouter);
+          this.app.get('/apis', userRouter);
     }
 }
 

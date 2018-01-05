@@ -41,7 +41,7 @@ class Server {
     routes() {
         const router = express.Router();
         // this.app.use('/', router);
-        this.app.use('/apis', userRouter_1.default);
+        this.app.get('/apis', userRouter_1.default);
     }
 }
 exports.default = new Server().app;
