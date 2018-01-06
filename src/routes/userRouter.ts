@@ -1,6 +1,6 @@
 import { Request, Response, Router } from 'express'
 import User from '../models/User'
-//import { userClass } from '../controllers/user'
+import { userClass } from '../controllers/user'
 
 class UserRouter {
 
@@ -32,7 +32,7 @@ class UserRouter {
         
         this.router.get('/',this.sum)
        // this.router.get('/', )
-       this.router.get('/listAll', this.listAll )
+       this.router.get('/listAll', userClass.listAll )
     }
 }
 

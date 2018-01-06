@@ -2,7 +2,7 @@
 Object.defineProperty(exports, "__esModule", { value: true });
 const express_1 = require("express");
 const User_1 = require("../models/User");
-//import { userClass } from '../controllers/user'
+const user_1 = require("../controllers/user");
 class UserRouter {
     constructor() {
         this.router = express_1.Router();
@@ -25,7 +25,7 @@ class UserRouter {
     routes() {
         this.router.get('/', this.sum);
         // this.router.get('/', )
-        this.router.get('/listAll', this.listAll);
+        this.router.get('/listAll', user_1.userClass.listAll);
     }
 }
 const userRoutes = new UserRouter();
