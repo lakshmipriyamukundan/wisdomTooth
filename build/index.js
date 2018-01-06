@@ -1,10 +1,10 @@
 "use strict";
 Object.defineProperty(exports, "__esModule", { value: true });
-const http = require("http");
 const debug = require("debug");
+const http = require("http");
 const server_1 = require("./server");
 debug('ts-express:server');
-const port = normalizePort(process.env.PORT || 6000);
+const port = normalizePort(process.env.PORT || 3000);
 server_1.default.set('port', port);
 console.log(`Server listening on port ${port}`);
 const server = http.createServer(server_1.default);
@@ -12,18 +12,22 @@ server.listen(port);
 server.on('error', onError);
 server.on('listening', onListening);
 function normalizePort(val) {
-    let port = (typeof val === 'string') ? parseInt(val, 10) : val;
-    if (isNaN(port))
+    const port = (typeof val === 'string') ? parseInt(val, 10) : val;
+    if (isNaN(port)) {
         return val;
-    else if (port >= 0)
+    }
+    else if (port >= 0) {
         return port;
-    else
+    }
+    else {
         return false;
+    }
 }
 function onError(error) {
-    if (error.syscall !== 'listen')
+    if (error.syscall !== 'listen') {
         throw error;
-    let bind = (typeof port === 'string') ? 'Pipe ' + port : 'Port ' + port;
+    }
+    const bind = (typeof port === 'string') ? 'Pipe ' + port : 'Port ' + port;
     switch (error.code) {
         case 'EACCES':
             console.error(`${bind} requires elevated privileges`);
@@ -38,8 +42,8 @@ function onError(error) {
     }
 }
 function onListening() {
-    let addr = server.address();
-    let bind = (typeof addr === 'string') ? `pipe ${addr}` : `port ${addr.port}`;
+    const addr = server.address();
+    const bind = (typeof addr === 'string') ? `pipe ${addr}` : `port ${addr.port}`;
     debug(`Listening on ${bind}`);
 }
 //# sourceMappingURL=index.js.map

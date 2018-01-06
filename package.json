@@ -6,7 +6,7 @@
 	"license": "MIT",
 	"scripts": {
 		"start": "node ./build/index.js",
-		"server": "tsc && nodemon ./build/index.js"
+		"server": "tsc && node ./build/index.js"
 	},
 	"jest": {
 		"globals": {

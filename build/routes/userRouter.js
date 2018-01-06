@@ -1,24 +1,31 @@
 "use strict";
 Object.defineProperty(exports, "__esModule", { value: true });
 const express_1 = require("express");
-//import { userClass } from '../controllers/auth/login'
+const User_1 = require("../models/User");
+//import { userClass } from '../controllers/user'
 class UserRouter {
     constructor() {
         this.router = express_1.Router();
         this.routes();
     }
     sum(req, res) {
-        console.log("dfhgjdsjjds");
         res.status(200).send({
             status: 'Success',
             data: 'Good Evening'
         });
     }
+    listAll(req, res) {
+        User_1.default.find({}).then(data => {
+            return res.status(200).send({
+                status: 'Success',
+                data: data
+            });
+        });
+    }
     routes() {
-        console.log('>>>>>>>>>>>>>>>.');
-        this.router.get('/ww', this.sum);
+        this.router.get('/', this.sum);
         // this.router.get('/', )
-        // this.router.post('/create', userClass.save )
+        this.router.get('/listAll', this.listAll);
     }
 }
 const userRoutes = new UserRouter();
