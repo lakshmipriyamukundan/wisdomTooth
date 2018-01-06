@@ -22,7 +22,7 @@ let UserSchema = new mongoose_1.Schema({
         type: String
     },
     email: {
-        type: '',
+        type: String,
         required: true,
         unique: true
     },
@@ -47,4 +47,4 @@ UserSchema.pre('save', (next) => {
     next();
 });
 exports.default = mongoose_1.model('User', UserSchema);
-//# sourceMappingURL=user.js.map
+//# sourceMappingURL=User.js.map
