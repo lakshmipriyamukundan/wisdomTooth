@@ -1,4 +1,5 @@
 import { Request , Response } from 'express';
+import * as bluebird from 'bluebird'
 import User from '../models/User'
 
 class UserClass {
@@ -11,13 +12,19 @@ class UserClass {
         this.listAll(this.req, this.res)
     }
 
-    public listAll(req: Request, res: Response): void {
-        User.find({}).then(data => {
+    public async listAll(req: Request, res: Response): bluebird {
+        try{
+            const users = await User.find();
             return res.status(200).send({
                 status: 'Success',
-                data: data
+                data: users
             })
-        })
+        }catch(err){
+            return res.status(500).send({
+                status: 'Failed',
+                msg:'Something went wrong!!!'
+            })
+        }
     } 
 
 //     public save(req: Request, res: Response) : void                   {
