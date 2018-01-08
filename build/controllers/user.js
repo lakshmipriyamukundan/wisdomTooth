@@ -29,12 +29,6 @@ class UserClass {
                     msg: 'Something went wrong!!!'
                 });
             }
-            // User.find({}).then(data => {
-            //     return res.status(200).send({
-            //         status: 'Success',
-            //         data: data
-            //     })
-            // })
         });
     }
 }

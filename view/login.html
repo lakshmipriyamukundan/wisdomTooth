@@ -1,58 +1,112 @@
 <html>
-    <head>
-        <title>login</title>
-        <style>
-            h1{
-                text-align: center;
-                margin-top: 3.5em
-            }
 
-            .container {
-                box-sizing: border-box;
-                width: 340px;
-                margin: 0 auto;
-            }
+<head>
+    <title>login</title>
+    <style>
+        h1 {
+            text-align: center;
+            margin-top: 3.5em;
+            color: #484848;
+        }
 
-            .formbody{
-                border-top: 1px;
-                border-radius: 5px;
-                padding: 5em;
-                font-size: 14px;
-                background-color: #fff;
-                border: 1px solid #d8dee2
-            }
+        body {
+            background-color: gainsboro;
+            background-image: url('/home/devc271/lakshmi/wisdomTooth/public/rachel-lees-371341.jpg');
+            font-family: Courier New, Courier, monospace;
+            background-size: 100em, 100em;
+            background-repeat: no-repeat;
+        }
 
-            .text-block{
-                margin-right: 10em;
-            }
+        .container {
+            box-sizing: border-box;
+            width: 340px;
+            margin: 0 auto;
+        }
 
-            input,label{
-                display: block;
-            }
+        .formbody {
+            border-top: 1px;
+            border-radius: 5px;
+            padding: 5em;
+            font-size: 11px;
+            background-color: #fff;
+            border: 1px solid #d8dee2
+        }
 
-            .submit-block{
-                margin-top: 2em;
-            }
-        </style>
-    </head>
-            <body>
-                <h1>LogIn</h1>
-                    <div class="container">
-                        <form action="">
-                            <div class="formbody">
-                                <div class="text-block">
-                                    <label for="username">Username</label>
-                                    <input type="text" name="username" class="input-text">
-                                </div>
-                                <div class="text-block">
-                                    <label for="password">Password</label>
-                                    <input type="password" name="password"  class="input-text">
-                                </div>
-                                <div class="submit-block">
-                                    <input type="button" value='Submit'>
-                                </div>
-                            </div>
-                        </form>
-                    </div>
-            </body>
+        input,
+        label {
+            display: block;
+        }
+
+        label {
+            color: #484848;
+        }
+
+        .input-text {
+            width: 100%;
+            margin-top: .4em;
+            height: 2.5em;
+            border-radius: .3em;
+            border: 1px solid #87CEFA;
+            padding-left: .5em;
+        }
+
+        .input-text:focus {
+            outline: none;
+            border-color: #87CEFA;
+            box-shadow: inset 0 1px 1px #87CEFA
+        }
+
+        .second-block {
+            margin-top: 1.6em;
+        }
+
+        a {
+            color: #79b9e1;
+        }
+
+        a:hover {
+            color: #517b96;
+        }
+
+        #submit-button {
+            background-color: #87CEFA;
+            border-radius: .3em;
+            font-weight: bold;
+            color: whitesmoke;
+            font-family: Courier New, Courier, monospace;
+            border: none;
+            padding: 10px;
+            display: inline;
+        }
+    </style>
+</head>
+
+<body>
+    <h1>Sign In</h1>
+    <div class="container">
+        <form action="">
+            <div class="formbody">
+                <div class="text-block">
+                    <label for="username">
+                        <b>Username</b>
+                    </label>
+                    <input type="text" name="username" placeholder="tony@stark.com" class="input-text">
+                </div>
+                <div class="text-block second-block">
+                    <label for="password">
+                        <b>Password</b>
+                    </label>
+                    <input type="password" name="password" placeholder="*******" class="input-text">
+                </div>
+                <div class="submit-block second-block">
+                    <p>
+                        <input type="button" id="submit-button" value='Sign In'>
+                        <a href="http://dhfgdj">or Sign Up Now</a>
+                    </p>
+                </div>
+            </div>
+        </form>
+    </div>
+</body>
+
 </html>
