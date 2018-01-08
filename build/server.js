@@ -9,7 +9,6 @@ const helmet = require("helmet");
 const mongoose = require("mongoose");
 const logger = require("morgan");
 const eValidator = require("express-validator");
-const userRouter_1 = require("./routes/userRouter");
 class Server {
     constructor() {
         this.app = express();
@@ -43,7 +42,7 @@ class Server {
     routes() {
         const router = express.Router();
         this.app.use('/1', (req, res) => { res.send("ok"); });
-        this.app.use('/api/v1/users', userRouter_1.default);
+        // this.app.use('/api/v1/users', UserRouter);
     }
 }
 // export

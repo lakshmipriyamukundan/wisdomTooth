@@ -56,7 +56,7 @@ class Server {
     const router: express.Router = express.Router();
 
     this.app.use('/1', (req,res)=>{res.send("ok")});
-    this.app.use('/api/v1/users', UserRouter);
+   // this.app.use('/api/v1/users', UserRouter);
   
   }
 }
