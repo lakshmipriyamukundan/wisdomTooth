@@ -2,17 +2,17 @@ import { Request , Response } from 'express';
 import * as bluebird from 'bluebird'
 import User from '../models/User'
 
-class UserClass {
+export class UserClass {
 
     private isValid : Boolean = true;
     private req: Request ;
     private res: Response;
 
-    constructor() {
-        this.listAll(this.req, this.res)
-    }
+    // constructor() {
+    //     this.listAll(this.req, this.res)
+    // }
 
-    public async listAll(req: Request, res: Response): bluebird {
+    public static async listAll(req: Request, res: Response): bluebird {
         try{
             const users = await User.find();
             return res.status(200).send({
@@ -65,6 +65,6 @@ class UserClass {
    
 }
 
-const userClass = new UserClass();
+//const userClass = new UserClass();
 
-export { userClass }
+//export { UserClass }
