@@ -8,6 +8,7 @@ const express = require("express");
 const helmet = require("helmet");
 const mongoose = require("mongoose");
 const logger = require("morgan");
+const eValidator = require("express-validator");
 const userRouter_1 = require("./routes/userRouter");
 class Server {
     constructor() {
@@ -19,9 +20,11 @@ class Server {
     config() {
         const MONGO_URI = 'mongodb://localhost/tes';
         mongoose.connect(MONGO_URI || process.env.MONGODB_URI);
+        console.log('Mongo connected to ', MONGO_URI);
         // express middleware
         this.app.use(bodyParser.urlencoded({ extended: true }));
         this.app.use(bodyParser.json());
+        this.app.use(eValidator);
         this.app.use(cookieParser());
         this.app.use(logger('dev'));
         this.app.use(compression());
@@ -39,7 +42,7 @@ class Server {
     // application routes
     routes() {
         const router = express.Router();
-        this.app.use('/', router);
+        this.app.use('/1', (req, res) => { res.send("ok"); });
         this.app.use('/api/v1/users', userRouter_1.default);
     }
 }

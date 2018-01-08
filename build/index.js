@@ -4,9 +4,8 @@ const debug = require("debug");
 const http = require("http");
 const server_1 = require("./server");
 debug('ts-express:server');
-const port = normalizePort(process.env.PORT || 3000);
+const port = normalizePort(process.env.PORT || 3500);
 server_1.default.set('port', port);
-console.log(`Server listening on port ${port}`);
 const server = http.createServer(server_1.default);
 server.listen(port);
 server.on('error', onError);
@@ -45,5 +44,6 @@ function onListening() {
     const addr = server.address();
     const bind = (typeof addr === 'string') ? `pipe ${addr}` : `port ${addr.port}`;
     debug(`Listening on ${bind}`);
+    console.log(`Server listening on port ${port}`);
 }
 //# sourceMappingURL=index.js.map

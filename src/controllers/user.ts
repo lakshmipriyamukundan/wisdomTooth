@@ -1,18 +1,10 @@
-import { Request , Response } from 'express';
+import { RequestHandler } from 'express';
 import * as bluebird from 'bluebird'
 import User from '../models/User'
 
 class UserClass {
 
-    private isValid : Boolean = true;
-    private req: Request ;
-    private res: Response;
-
-    constructor() {
-        this.listAll(this.req, this.res)
-    }
-
-    public async listAll(req: Request, res: Response): bluebird {
+    public static listAll:RequestHandler = async (req, res)=> {
         try{
             const users = await User.find();
             return res.status(200).send({
@@ -27,44 +19,49 @@ class UserClass {
         }
     } 
 
-//     public save(req: Request, res: Response) : void                   {
+    // public async save(req: Request, res: Response):                {
 
-//         req.checkBody('firstName', 'Invalid firstName').notEmpty();
-//         req.checkBody('lastName', 'Invalid lastName').notEmpty();
-//         req.checkBody('email', 'Invalid email').notEmpty().isEmail();
-//         req.checkBody('password', 'Invalid password').notEmpty();
+    //     try{
+           
+    //     req.checkBody('firstName', 'Invalid firstName').notEmpty();
+    //     req.checkBody('lastName', 'Invalid lastName').notEmpty();
+    //     req.checkBody('email', 'Invalid email').notEmpty().isEmail();
+    //     req.checkBody('password', 'Invalid password').notEmpty();
 
-//         req.getValidationResult()
-//         .then(result => {
-//             if(!result.isEmpty()){
-//                 this.isValid = false;
-//                 return Promise.reject(result.array())
-//             }
+    //     let validationResult = await req.getValidationResult();
+        
+    //     if(!validationResult.isEmpty()){
+    //         this.isValid = false;
+    //         throw new Error('validation err');
+    //     }
 
-//             let user = new User(req.body);
+    //     const user = new User(req.body);
+    //     const savedUser = await user.save();
 
-//             user.save().then(data => {
-//                 return res.status(201).send({
-//                     status: 'Success',
-//                     msg: 'Successfully Added'
-//                 })
-//             })
+    //     return res.status(201).send({
+    //         status: 'Success',
+    //         data: savedUser
+    //     });
 
-//         })
-//         .catch(err => {
-//             if(!this.isValid){
-//                 return res.status(400).send({
-//                     status: 'Failed',
-//                     msg: err
-//                 })
-//             }
-//         })
+    //     }catch(err){
 
-//    }
-// // 
+    //         if(!this.isValid){
+    //             return res.status(400).send({
+    //                 status: 'Failed',
+    //                 msg: err
+    //             })
+    //         }
+
+    //         return res.status(500).send({
+    //             status: 'Failed',
+    //             msg: err
+    //         })
+    //     }
+    // }
+
    
 }
 
-const userClass = new UserClass();
+//const userClass = new UserClass();
 
-export { userClass }
+export { UserClass }

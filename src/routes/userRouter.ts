@@ -1,6 +1,6 @@
 import { Request, Response, Router } from 'express'
 import User from '../models/User'
-import { userClass } from '../controllers/user'
+import { UserClass } from '../controllers/user'
 
 class UserRouter {
 
@@ -11,28 +11,19 @@ class UserRouter {
         this.routes();
     }
 
-    public sum(req: Request, res: Response):void{
+    // public sum(req: Request, res: Response):void{
       
-       res.status(200).send({
-           status: 'Success',
-           data: 'Good Evening'
-       })
-    }
-
-    public listAll(req: Request, res: Response) {
-        User.find({}).then(data => {
-            return res.status(200).send({
-                status: 'Success',
-                data: data
-            })
-        })
-    }
+    //    res.status(200).send({
+    //        status: 'Success',
+    //        data: 'Good Evening'
+    //    })
+    // }
 
     public routes():void {
         
-        this.router.get('/',this.sum)
-       // this.router.get('/', )
-       this.router.get('/listAll', userClass.listAll )
+       // this.router.get('/',this.sum)
+        //this.router.get('/save', userClass.save)
+        this.router.get('/listAll', UserClass.listAll)
     }
 }
 

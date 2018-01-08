@@ -7,6 +7,7 @@ import * as helmet from 'helmet';
 import * as mongoose from 'mongoose';
 import * as logger from 'morgan';
 import * as path from 'path';
+import * as eValidator from 'express-validator';
 
 import UserRouter from './routes/userRouter';
 
@@ -27,9 +28,12 @@ class Server {
     const MONGO_URI: string = 'mongodb://localhost/tes'; 
     mongoose.connect(MONGO_URI || process.env.MONGODB_URI);
 
+    console.log('Mongo connected to ', MONGO_URI)
+
     // express middleware
     this.app.use(bodyParser.urlencoded({ extended: true }));
     this.app.use(bodyParser.json());
+    this.app.use(eValidator);
     this.app.use(cookieParser());
     this.app.use(logger('dev'));
     this.app.use(compression());
@@ -51,7 +55,7 @@ class Server {
   public routes(): void {
     const router: express.Router = express.Router();
 
-    this.app.use('/', router);
+    this.app.use('/1', (req,res)=>{res.send("ok")});
     this.app.use('/api/v1/users', UserRouter);
   
   }
