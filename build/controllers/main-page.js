@@ -1,9 +1,9 @@
 "use strict";
 Object.defineProperty(exports, "__esModule", { value: true });
-class mainClass {
+class MainClass {
     static renderMain(req, res) {
-        res.render('index', { title: "Views" });
+        res.render('index', { title: 'Views' });
     }
 }
-exports.mainClass = mainClass;
+exports.MainClass = MainClass;
 //# sourceMappingURL=main-page.js.map

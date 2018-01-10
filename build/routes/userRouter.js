@@ -10,7 +10,7 @@ class UserRouter {
     }
     routes() {
         // this.router.get('/',this.sum)
-        this.router.get('/', main_page_1.mainClass.renderMain);
+        this.router.get('/', main_page_1.MainClass.renderMain);
         this.router.get('/listAll', user_1.UserClass.listAll);
     }
 }

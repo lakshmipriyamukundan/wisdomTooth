@@ -39,7 +39,7 @@ class Server {
     }
     // application routes
     routes() {
-        //const router: express.Router = express.Router();
+        // const router: express.Router = express.Router();
         // this.app.use('/', router);
         this.app.use('/api/v1/users', userRouter_1.default);
     }

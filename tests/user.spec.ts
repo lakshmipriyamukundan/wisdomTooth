@@ -1,7 +1,8 @@
-import * as supertest from 'supertest' ;
+import * as supertest from 'supertest';
 import * as app from '../src/server';
 
-jest.mock('../src/models/User');
+console.log(app)
+// jest.mock('../src/models/User');
 
 describe('Testing basic functionalities of user', () => {
     // afterEach(() => {

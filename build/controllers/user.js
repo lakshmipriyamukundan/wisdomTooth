@@ -40,7 +40,7 @@ class UserClass {
         //             }
         //         })
         //    }
-        // // 
+        // //
     }
     // constructor() {
     //     this.listAll(this.req, this.res)
@@ -64,6 +64,6 @@ class UserClass {
     }
 }
 exports.UserClass = UserClass;
-//const userClass = new UserClass();
-//export { UserClass } 
+// const userClass = new UserClass();
+// export { UserClass } 
 //# sourceMappingURL=user.js.map
