@@ -27,6 +27,7 @@ class Server {
         this.app.use(compression());
         this.app.use(helmet());
         this.app.use(cors());
+        this.app.set('view engine', 'ejs');
         // cors
         this.app.use((req, res, next) => {
             res.header('Access-Control-Allow-Origin', 'http://localhost:8080');
@@ -38,8 +39,8 @@ class Server {
     }
     // application routes
     routes() {
-        const router = express.Router();
-        this.app.use('/', router);
+        //const router: express.Router = express.Router();
+        // this.app.use('/', router);
         this.app.use('/api/v1/users', userRouter_1.default);
     }
 }

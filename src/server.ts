@@ -35,6 +35,7 @@ class Server {
     this.app.use(compression());
     this.app.use(helmet());
     this.app.use(cors());
+    this.app.set('view engine', 'ejs');
 
     // cors
     this.app.use((req, res, next) => {
@@ -49,9 +50,9 @@ class Server {
 
   // application routes
   public routes(): void {
-    const router: express.Router = express.Router();
+    //const router: express.Router = express.Router();
 
-    this.app.use('/', router);
+    // this.app.use('/', router);
     this.app.use('/api/v1/users', UserRouter);
   
   }

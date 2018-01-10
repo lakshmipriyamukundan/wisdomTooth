@@ -1,6 +1,6 @@
 import { Request , Response } from 'express';
-import * as bluebird from 'bluebird'
 import User from '../models/User'
+import bluebird from 'bluebird'
 
 export class UserClass {
 
