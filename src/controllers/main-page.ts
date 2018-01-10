@@ -1,8 +1,8 @@
 import { Request , Response } from 'express';
 
-export class mainClass {
+export class MainClass {
 
     public static renderMain (req: Request, res: Response): void {
-        res.render('index',{title: "Views"})
+        res.render('index', {title: 'Views'} );
     }
 }

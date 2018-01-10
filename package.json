@@ -6,7 +6,10 @@
 	"license": "MIT",
 	"scripts": {
 		"start": "node ./build/index.js",
-		"server": "tsc && node ./build/index.js"
+		"server": "tsc && node ./build/index.js",
+		"lint": "tslint -c tslint.json 'src/**/*.{ts,tsx}'",
+		"lintFix": "tslint -c tslint.json 'src/**/*.{ts,tsx}' --fix",
+		"test": "jest"
 	},
 	"jest": {
 		"globals": {
@@ -36,8 +39,10 @@
 		"@types/jest": "^22.0.0",
 		"@types/mongoose": "^4.7.27",
 		"@types/node": "^8.0.53",
+		"@types/supertest": "^2.0.4",
 		"jest": "^22.0.4",
 		"ts-jest": "^22.0.0",
+		"tslint": "^5.8.0",
 		"typescript": "^2.6.1"
 	}
 }

@@ -20,11 +20,11 @@ class Server {
     this.config();
     this.routes();
   }
-  
+
   // application config
   public config(): void {
 
-    const MONGO_URI: string = 'mongodb://localhost/tes'; 
+    const MONGO_URI: string = 'mongodb://localhost/tes';
     mongoose.connect(MONGO_URI || process.env.MONGODB_URI);
 
     // express middleware
@@ -45,16 +45,16 @@ class Server {
       res.header('Access-Control-Allow-Credentials', 'true');
       next();
     });
-    
+
   }
 
   // application routes
   public routes(): void {
-    //const router: express.Router = express.Router();
+    // const router: express.Router = express.Router();
 
     // this.app.use('/', router);
     this.app.use('/api/v1/users', UserRouter);
-  
+
   }
 }
 

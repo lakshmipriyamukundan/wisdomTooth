@@ -1,10 +1,10 @@
 import { Request , Response } from 'express';
-import User from '../models/User'
-import bluebird from 'bluebird'
+import User from '../models/User';
+import bluebird from 'bluebird';
 
 export class UserClass {
 
-    private isValid : Boolean = true;
+    private isValid: Boolean = true;
     private req: Request ;
     private res: Response;
 
@@ -13,19 +13,19 @@ export class UserClass {
     // }
 
     public static async listAll(req: Request, res: Response): bluebird {
-        try{
+        try {
             const users = await User.find();
             return res.status(200).send({
                 status: 'Success',
                 data: users
-            })
-        }catch(err){
+            });
+        } catch (err) {
             return res.status(500).send({
                 status: 'Failed',
-                msg:'Something went wrong!!!'
-            })
+                msg: 'Something went wrong!!!'
+            });
         }
-    } 
+    }
 
 //     public save(req: Request, res: Response) : void                   {
 
@@ -61,10 +61,10 @@ export class UserClass {
 //         })
 
 //    }
-// // 
-   
+// //
+
 }
 
-//const userClass = new UserClass();
+// const userClass = new UserClass();
 
-//export { UserClass }
+// export { UserClass }

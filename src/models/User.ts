@@ -1,9 +1,9 @@
 import { Schema, model } from 'mongoose';
 
-let UserSchema : Schema = new Schema({
+const UserSchema: Schema = new Schema({
 
     createdAt: {
-        type: Date, 
+        type: Date,
         default: Date.now()
     },
     updatedAt: {
@@ -41,11 +41,11 @@ let UserSchema : Schema = new Schema({
         type: 'String',
         default: 'Local'
     }
-})
+});
 
 UserSchema.pre('save', (next) => {
     this.fullName = this.firstName + ' ' + this.lastName;
-    next()
-})
+    next();
+});
 
 export default model('User', UserSchema);

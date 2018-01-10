@@ -1,13 +1,13 @@
 import { Schema, model } from 'mongoose';
 
-let PostSchema : Schema = new Schema({
+const PostSchema: Schema = new Schema({
 
     createdAt: {
         type: Date,
         default: Date.now()
     },
     updatedAt: {
-        type: Date, 
+        type: Date,
         default: Date.now()
     },
     author: {
@@ -34,12 +34,12 @@ let PostSchema : Schema = new Schema({
         required: true,
         unique: true,
         trim: true
-    
+
     },
     image: {
         type: String,
         default: ''
     }
-})
+});
 
 export default model('Post', PostSchema);
