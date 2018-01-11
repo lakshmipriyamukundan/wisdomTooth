@@ -2,6 +2,9 @@ import { Request , Response } from 'express';
 import User from '../models/User';
 import bluebird from 'bluebird';
 
+const { body, validationResult } = require('express-validator/check');
+const { sanitizeBody } = require('express-validator/filter');
+
 export class UserClass {
 
     private isValid: Boolean = true;
@@ -27,41 +30,46 @@ export class UserClass {
         }
     }
 
-//     public save(req: Request, res: Response) : void                   {
+    public static async save(req: Request, res: Response): bluebird                   {
 
-//         req.checkBody('firstName', 'Invalid firstName').notEmpty();
-//         req.checkBody('lastName', 'Invalid lastName').notEmpty();
-//         req.checkBody('email', 'Invalid email').notEmpty().isEmail();
-//         req.checkBody('password', 'Invalid password').notEmpty();
+        // Validate
+        body('firstName', 'FirstName must be specified').isLength({ min: 1 }).trim();
+        body('lastName', 'LastName must be specified').isLength({ min: 1 }).trim();
+        body('email', 'Email must be specified').isLength({ min: 1 }).trim();
+        body('password', 'Password must be specified').isLength({ min: 1 }).trim();
 
-//         req.getValidationResult()
-//         .then(result => {
-//             if(!result.isEmpty()){
-//                 this.isValid = false;
-//                 return Promise.reject(result.array())
-//             }
+        // Sanitize
+        sanitizeBody('firstName').trim().escape();
+        sanitizeBody('lastName').trim().escape();
+        sanitizeBody('email').trim().escape();
+        sanitizeBody('password').trim().escape();
 
-//             let user = new User(req.body);
+        const validationErrors = validationResult(req);
 
-//             user.save().then(data => {
-//                 return res.status(201).send({
-//                     status: 'Success',
-//                     msg: 'Successfully Added'
-//                 })
-//             })
+        if (!validationErrors.isEmpty()) {
+            return res.status(200).send({
+                status: 'Failed',
+                msg: validationErrors
+            });
+        }
 
-//         })
-//         .catch(err => {
-//             if(!this.isValid){
-//                 return res.status(400).send({
-//                     status: 'Failed',
-//                     msg: err
-//                 })
-//             }
-//         })
+        const user = new User(req.body);
 
-//    }
-// //
+        try {
+            const userSave = await user.save();
+            return res.status(200).send({
+                status: 'Success',
+                data: userSave
+            });
+        } catch (err) {
+            return res.status(500).send({
+                status: 'Failed',
+                msg: err
+            });
+        }
+
+   }
+
 
 }
 

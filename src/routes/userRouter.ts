@@ -19,6 +19,7 @@ class UserRouter {
        // this.router.get('/',this.sum)
        this.router.get('/', MainClass.renderMain);
        this.router.get('/listAll', UserClass.listAll );
+       this.router.post('/save', UserClass.save );
     }
 }
 

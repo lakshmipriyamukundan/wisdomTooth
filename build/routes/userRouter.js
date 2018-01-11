@@ -12,6 +12,7 @@ class UserRouter {
         // this.router.get('/',this.sum)
         this.router.get('/', main_page_1.MainClass.renderMain);
         this.router.get('/listAll', user_1.UserClass.listAll);
+        // this.router.post('/save', UserClass.save );
     }
 }
 const userRoutes = new UserRouter();
