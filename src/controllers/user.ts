@@ -1,9 +1,9 @@
-import { Request , Response } from 'express';
+import { Request , Response, RequestHandler } from 'express';
 import User from '../models/User';
 import bluebird from 'bluebird';
 
 const { body, validationResult } = require('express-validator/check');
-const { sanitizeBody } = require('express-validator/filter');
+const { sanitizeBody, matchedData } = require('express-validator/filter');
 
 export class UserClass {
 
@@ -14,8 +14,8 @@ export class UserClass {
     // constructor() {
     //     this.listAll(this.req, this.res)
     // }
-
-    public static async listAll(req: Request, res: Response): bluebird {
+    public static listAll: RequestHandler = async (req, res) => {
+    // public static async listAll(req: Request, res: Response): bluebird {
         try {
             const users = await User.find();
             return res.status(200).send({
@@ -52,8 +52,9 @@ export class UserClass {
                 msg: validationErrors
             });
         }
-
-        const user = new User(req.body);
+        // finding matched data from req.body
+        const data =  matchedData(req);
+        const user = new User(data);
 
         try {
             const userSave = await user.save();

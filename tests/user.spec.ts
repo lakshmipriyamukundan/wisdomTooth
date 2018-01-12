@@ -15,7 +15,7 @@ describe('Testing basic functionalities of user', () => {
       .send({
         firstName: 'tony',
         lastName: 'Stark',
-        email: 'iamtony123@stark.com',
+        email: 'iamtony1234@stark.com',
         password: 'iamtony'
       });
       // console.log(response.body);
