@@ -11,9 +11,6 @@ export class UserClass {
     private req: Request ;
     private res: Response;
 
-    // constructor() {
-    //     this.listAll(this.req, this.res)
-    // }
     public static listAll: RequestHandler = async (req, res) => {
     // public static async listAll(req: Request, res: Response): bluebird {
         try {
@@ -73,7 +70,3 @@ export class UserClass {
 
 
 }
-
-// const userClass = new UserClass();
-
-// export { UserClass }
