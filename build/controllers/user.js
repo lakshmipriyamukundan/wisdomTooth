@@ -9,60 +9,65 @@ var __awaiter = (this && this.__awaiter) || function (thisArg, _arguments, P, ge
 };
 Object.defineProperty(exports, "__esModule", { value: true });
 const User_1 = require("../models/User");
+const { body, validationResult } = require('express-validator/check');
+const { sanitizeBody, matchedData } = require('express-validator/filter');
 class UserClass {
     constructor() {
         this.isValid = true;
-        // public static async save(req: Request, res: Response): bluebird                   {
-        //     const isValid: Boolean = false;
-        //     req.checkBody('firstName', 'Invalid firstName').notEmpty();
-        //     req.checkBody('lastName', 'Invalid lastName').notEmpty();
-        //     req.checkBody('email', 'Invalid email').notEmpty().isEmail();
-        //     req.checkBody('password', 'Invalid password').notEmpty();
-        //     req.getValidationResult()
-        //     .then(result => {
-        //         if (!result.isEmpty()) {
-        //             return Promise.reject(result.array());
-        //         }
-        //         const user = new User(req.body);
-        //         user.save().then(data => {
-        //             return res.status(201).send({
-        //                 status: 'Success',
-        //                 msg: 'Successfully Added'
-        //             });
-        //         });
-        //     })
-        //     .catch(err => {
-        //         if (!isValid) {
-        //             return res.status(400).send({
-        //                 status: 'Failed',
-        //                 msg: err
-        //             });
-        //         }
-        //     });
-        // }
     }
-    // constructor() {
-    //     this.listAll(this.req, this.res)
-    // }
-    static listAll(req, res) {
+    static save(req, res) {
         return __awaiter(this, void 0, void 0, function* () {
+            // Validate
+            body('firstName', 'FirstName must be specified').isLength({ min: 1 }).trim();
+            body('lastName', 'LastName must be specified').isLength({ min: 1 }).trim();
+            body('email', 'Email must be specified').isLength({ min: 1 }).trim();
+            body('password', 'Password must be specified').isLength({ min: 1 }).trim();
+            // Sanitize
+            sanitizeBody('firstName').trim().escape();
+            sanitizeBody('lastName').trim().escape();
+            sanitizeBody('email').trim().escape();
+            sanitizeBody('password').trim().escape();
+            const validationErrors = validationResult(req);
+            if (!validationErrors.isEmpty()) {
+                return res.status(200).send({
+                    status: 'Failed',
+                    msg: validationErrors
+                });
+            }
+            // finding matched data from req.body
+            const data = matchedData(req);
+            const user = new User_1.default(data);
             try {
-                const users = yield User_1.default.find();
+                const userSave = yield user.save();
                 return res.status(200).send({
                     status: 'Success',
-                    data: users
+                    data: userSave
                 });
             }
             catch (err) {
                 return res.status(500).send({
                     status: 'Failed',
-                    msg: 'Something went wrong!!!'
+                    msg: err
                 });
             }
         });
     }
 }
+UserClass.listAll = (req, res) => __awaiter(this, void 0, void 0, function* () {
+    // public static async listAll(req: Request, res: Response): bluebird {
+    try {
+        const users = yield User_1.default.find();
+        return res.status(200).send({
+            status: 'Success',
+            data: users
+        });
+    }
+    catch (err) {
+        return res.status(500).send({
+            status: 'Failed',
+            msg: 'Something went wrong!!!'
+        });
+    }
+});
 exports.UserClass = UserClass;
-// const userClass = new UserClass();
-// export { UserClass } 
 //# sourceMappingURL=user.js.map

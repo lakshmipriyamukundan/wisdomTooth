@@ -32,7 +32,7 @@ class Server {
         // express middleware
         this.app.use(bodyParser.urlencoded({ extended: true }));
         this.app.use(bodyParser.json());
-        this.app.use(validator);
+        this.app.use(validator());
         this.app.use(cookieParser());
         this.app.use(logger('dev'));
         this.app.use(compression());
