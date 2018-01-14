@@ -10,7 +10,7 @@ import * as logger from 'morgan';
 import * as path from 'path';
 import * as bluebird from 'bluebird';
 
-import UserRouter from './routes/userRouter';
+import UserRouter from './routes/user-router';
 
 class Server {
 
