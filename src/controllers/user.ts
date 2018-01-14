@@ -2,8 +2,8 @@ import { Request , Response, RequestHandler } from 'express';
 import User from '../models/User';
 import bluebird from 'bluebird';
 
-const { body, validationResult } = require('express-validator/check');
-const { sanitizeBody, matchedData } = require('express-validator/filter');
+const { validationResult } = require('express-validator/check');
+const { matchedData } = require('express-validator/filter');
 
 export class UserClass {
 
@@ -27,9 +27,8 @@ export class UserClass {
         }
     }
 
-    public static async save(req: Request, res: Response): bluebird                   {
+    public static save: RequestHandler = async (req, res)                   {
 
-        const errors = validationResult(req)
         const validationErrors = validationResult(req);
 
         if (!validationErrors.isEmpty()) {
