@@ -54,7 +54,7 @@ export class UserClass {
             const id = userSave._id;
             const email = data.email;
             const token = await jwt.sign({id, email}, tokensecret);
-            
+
             return res.status(200).send({
                 status: 'Success',
                 data: userSave,
@@ -70,6 +70,29 @@ export class UserClass {
             });
 
         }
+
+   }
+
+public static login: RequestHandler = async (req, res) => {
+    const validationErrors = validationResult(req);
+      
+    if (!validationErrors.isEmpty()) {
+        return res.status(422).send({
+            status: 'Failed',
+            msg: validationErrors.array()
+        });
+    }
+    // finding matched data from req.body
+    const data =  matchedData(req);
+
+    const user = await User.findOne({ email: req.body.email });
+    if(!user) {
+        return res.status(400).send({
+            status: 'Failed',
+            msg: 'Invalid password or email'
+        })
+    }
+    //const isUser: Boolean = bcrypt.compare(user.password, req.body.password);
 
    }
 

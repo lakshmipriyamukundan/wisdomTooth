@@ -14,5 +14,11 @@ export const userRules = {
     sanitizeBody('lastName').trim().escape(),
     sanitizeBody('email').trim().escape(),
     sanitizeBody('password').trim().escape(),
+  ],
+  forLogin: [
+    body('email')
+      .isEmail().withMessage('Invalid email or password'),
+    body('password', 'Invalid email or password')
+      .isLength({ min: 1 })
   ]
 };
