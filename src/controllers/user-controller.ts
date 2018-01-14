@@ -1,10 +1,19 @@
 import { RequestHandler } from 'express';
 import User from '../models/User';
+import * as bcrypt from 'bcrypt';
+import * as jwt from 'jsonwebtoken';
+import * as jwtConstant from '../constants/jwt-token.json'
 
 const { validationResult } = require('express-validator/check');
 const { matchedData } = require('express-validator/filter');
 
+const tokensecret = (<any>jwtConstant).tokensecret;
+const saltRounds = (<any>jwtConstant).saltRounds;
+
 export class UserClass {
+
+    // private tokensecret = (<any>jwtConstant).tokensecret;
+    // private saltRounds = (<any>jwtConstant).saltRounds;
 
     public static listAll: RequestHandler = async (req, res) => {
     // public static async listAll(req: Request, res: Response): bluebird {
@@ -25,7 +34,7 @@ export class UserClass {
     public static save: RequestHandler = async (req, res) => {
 
         const validationErrors = validationResult(req);
-
+      
         if (!validationErrors.isEmpty()) {
             return res.status(422).send({
                 status: 'Failed',
@@ -34,19 +43,32 @@ export class UserClass {
         }
         // finding matched data from req.body
         const data =  matchedData(req);
-        const user = new User(data);
-
+    
         try {
+
+            const hashedPassword = await bcrypt.hash(data.password, saltRounds);
+            data.password = hashedPassword;
+            //console.log(hashedPassword)
+            const user = new User(data);
             const userSave = await user.save();
+            const id = userSave._id;
+            const email = data.email;
+            const token = await jwt.sign({id, email}, tokensecret);
+            
             return res.status(200).send({
                 status: 'Success',
-                data: userSave
+                data: userSave,
+                token: token
             });
+
         } catch (err) {
+
+            console.log(err)
             return res.status(500).send({
                 status: 'Failed',
                 msg: err
             });
+
         }
 
    }
