@@ -1,5 +1,8 @@
 import * as supertest from 'supertest';
 import app from '../src/server';
+import User from '../src/models/User';
+
+const keyMail = 'iamironman@gm.com';
 
 // jest.mock('../src/models/User');
 
@@ -15,10 +18,21 @@ describe('Testing basic functionalities of user', () => {
       .send({
         firstName: 'tony',
         lastName: 'Stark',
-        email: 'iamironman4@stark.com',
+        email: keyMail,
         password: 'iamtony'
-      });
-      console.log(response.body);
-      expect(response.body.status).toBe('Failed');
+      })
+      .expect(200);
+      //console.log(response.body);
+      expect(response.body.status).toBe('Success');
     });
+
+    it('Deletes the created user', async () => {
+      try{
+        const remove = await User.remove({email: keyMail});
+        //console.log(remove)
+      }catch(err){
+        console.log(err)
+      }
+    })
+    
 });
