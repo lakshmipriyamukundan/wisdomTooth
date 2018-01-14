@@ -1,7 +1,7 @@
-import * as bcrypt from 'bcrypt'
-import { body } from 'express-validator/check'
-import { sanitizeBody } from 'express-validator/filter'
-import  User  from '../models/user'
+import * as bcrypt from 'bcrypt';
+import { body } from 'express-validator/check';
+import { sanitizeBody } from 'express-validator/filter';
+import  User  from '../models/user';
 export const userRules = {
   forRegister: [
     body('firstName', 'FirstName must be specified').isLength({ min: 1 }).trim(),
@@ -15,4 +15,4 @@ export const userRules = {
     sanitizeBody('email').trim().escape(),
     sanitizeBody('password').trim().escape(),
   ]
-}
+};

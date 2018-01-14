@@ -1,15 +1,10 @@
-import { Request , Response, RequestHandler } from 'express';
+import { RequestHandler } from 'express';
 import User from '../models/User';
-import bluebird from 'bluebird';
 
 const { validationResult } = require('express-validator/check');
 const { matchedData } = require('express-validator/filter');
 
 export class UserClass {
-
-    private isValid: Boolean = true;
-    private req: Request ;
-    private res: Response;
 
     public static listAll: RequestHandler = async (req, res) => {
     // public static async listAll(req: Request, res: Response): bluebird {
@@ -27,7 +22,7 @@ export class UserClass {
         }
     }
 
-    public static save: RequestHandler = async (req, res)                   {
+    public static save: RequestHandler = async (req, res) => {
 
         const validationErrors = validationResult(req);
 
