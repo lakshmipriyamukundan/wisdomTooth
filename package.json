@@ -15,14 +15,21 @@
 		"globals": {
 			"__TS_CONFIG__": "tsconfig.json"
 		},
-		"moduleFileExtensions": ["ts", "js", "json"],
+		"moduleFileExtensions": [
+			"ts",
+			"js",
+			"json"
+		],
 		"transform": {
 			"^.+\\.(ts)$": "./node_modules/ts-jest/preprocessor.js"
 		},
-		"testMatch": ["**/tests/**/*.spec.(ts|js)"],
+		"testMatch": [
+			"**/tests/**/*.spec.(ts|js)"
+		],
 		"testEnvironment": "node"
 	},
 	"dependencies": {
+		"bcrypt": "^1.0.3",
 		"bluebird": "^3.5.1",
 		"body-parser": "^1.18.2",
 		"compression": "^1.7.1",

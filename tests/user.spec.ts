@@ -4,10 +4,10 @@ import app from '../src/server';
 // jest.mock('../src/models/User');
 
 describe('Testing basic functionalities of user', () => {
-    it('should respond with a 200 with no query parameters', async () => {
-      const response = await supertest(app).get('/api/v1/users/listAll');
-      expect(response.body.status).toBe('Success');
-    });
+    // it('should respond with a 200 with no query parameters', async () => {
+    //   const response = await supertest(app).get('/api/v1/users/listAll');
+    //   expect(response.body.status).toBe('Success');
+    // });
 
     it('testing user save functionality', async () => {
       const response = await supertest(app)
@@ -15,10 +15,10 @@ describe('Testing basic functionalities of user', () => {
       .send({
         firstName: 'tony',
         lastName: 'Stark',
-        email: 'iamtony1234@stark.com',
+        email: 'iamironman4@stark.com',
         password: 'iamtony'
       });
-      // console.log(response.body);
+      console.log(response.body);
       expect(response.body.status).toBe('Failed');
     });
 });

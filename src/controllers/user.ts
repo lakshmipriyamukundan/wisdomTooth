@@ -29,24 +29,13 @@ export class UserClass {
 
     public static async save(req: Request, res: Response): bluebird                   {
 
-        // Validate
-        body('firstName', 'FirstName must be specified').isLength({ min: 1 }).trim();
-        body('lastName', 'LastName must be specified').isLength({ min: 1 }).trim();
-        body('email', 'Email must be specified').isLength({ min: 1 }).trim();
-        body('password', 'Password must be specified').isLength({ min: 1 }).trim();
-
-        // Sanitize
-        sanitizeBody('firstName').trim().escape();
-        sanitizeBody('lastName').trim().escape();
-        sanitizeBody('email').trim().escape();
-        sanitizeBody('password').trim().escape();
-
+        const errors = validationResult(req)
         const validationErrors = validationResult(req);
 
         if (!validationErrors.isEmpty()) {
-            return res.status(200).send({
+            return res.status(422).send({
                 status: 'Failed',
-                msg: validationErrors
+                msg: validationErrors.array()
             });
         }
         // finding matched data from req.body
