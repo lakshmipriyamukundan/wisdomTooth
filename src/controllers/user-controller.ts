@@ -2,7 +2,7 @@ import { RequestHandler } from 'express';
 import User from '../models/User';
 import * as bcrypt from 'bcrypt';
 import * as jwt from 'jsonwebtoken';
-import * as jwtConstant from '../constants/jwt-token.json'
+import * as jwtConstant from '../constants/jwt-token.json';
 
 const { validationResult } = require('express-validator/check');
 const { matchedData } = require('express-validator/filter');
@@ -34,7 +34,7 @@ export class UserClass {
     public static save: RequestHandler = async (req, res) => {
 
         const validationErrors = validationResult(req);
-      
+
         if (!validationErrors.isEmpty()) {
             return res.status(422).send({
                 status: 'Failed',
@@ -43,12 +43,12 @@ export class UserClass {
         }
         // finding matched data from req.body
         const data =  matchedData(req);
-    
+
         try {
 
             const hashedPassword = await bcrypt.hash(data.password, saltRounds);
             data.password = hashedPassword;
-            //console.log(hashedPassword)
+            // console.log(hashedPassword)
             const user = new User(data);
             const userSave = await user.save();
             const id = userSave._id;
@@ -63,7 +63,7 @@ export class UserClass {
 
         } catch (err) {
 
-            console.log(err)
+            console.log(err);
             return res.status(500).send({
                 status: 'Failed',
                 msg: err
@@ -75,7 +75,7 @@ export class UserClass {
 
 public static login: RequestHandler = async (req, res) => {
     const validationErrors = validationResult(req);
-      
+
     if (!validationErrors.isEmpty()) {
         return res.status(422).send({
             status: 'Failed',
@@ -85,14 +85,16 @@ public static login: RequestHandler = async (req, res) => {
     // finding matched data from req.body
     const data =  matchedData(req);
 
-    const user = await User.findOne({ email: req.body.email });
-    if(!user) {
+    const user = await User.findOne({ email: req.body.email }).exec();
+
+    if (!user) {
         return res.status(400).send({
             status: 'Failed',
             msg: 'Invalid password or email'
-        })
+        });
     }
-    //const isUser: Boolean = bcrypt.compare(user.password, req.body.password);
+
+    // const isUser: Boolean = bcrypt.compare(user.password, req.body.password);
 
    }
 
