@@ -22,6 +22,7 @@ class UserRouter {
        this.router.get('/', MainClass.renderMain);
        this.router.get('/listAll', UserClass.listAll );
        this.router.post('/save', userRules['forRegister'], UserClass.save);
+       this.router.post('/login', userRules['forLogin'],UserClass.login)
     }
 }
 

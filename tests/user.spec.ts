@@ -26,6 +26,17 @@ describe('Testing basic functionalities of user', () => {
       expect(response.body.status).toBe('Success');
     });
 
+    it('Testing user login functionality',async () => {
+      const res = await supertest(app).post('/api/v1/users/login').send({
+        email: keyMail,
+        password: 'iamtony'
+      })
+      .expect(200);
+
+      expect(res.body).toHaveProperty('status', 'Success')
+      expect(res.body).toHaveProperty('data')
+    })
+
     it('Deletes the created user', async () => {
       try{
         const remove = await User.remove({email: keyMail});

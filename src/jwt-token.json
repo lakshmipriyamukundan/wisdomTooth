@@ -1,0 +1,4 @@
+{
+    "tokensecret": "GoodAtHome",
+    "saltRounds":12
+}
