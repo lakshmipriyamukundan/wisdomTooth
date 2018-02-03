@@ -99,8 +99,6 @@ public static login: RequestHandler = async (req, res) => {
         data: user
     })
 
-    // const isUser: Boolean = bcrypt.compare(user.password, req.body.password);
-
    }
 
 
