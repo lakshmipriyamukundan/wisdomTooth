@@ -19,6 +19,13 @@ export class WordClass {
         const data =  matchedData(req);
 
         try{
+            const count = await Word.count({word: data.word});
+            if(count > 0){
+                return res.status(409).send({
+                    status: 'Failed',
+                    msg: 'Duplicate Word'
+                })
+            }
             const word = new Word(data);
             const savedWord = await word.save();
 
