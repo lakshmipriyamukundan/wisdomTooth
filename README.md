@@ -1,6 +1,6 @@
 # Wisdom Tooth
 
-Just a rough book for my typescript learning
+Just a workbook
 
 ## Description
 
