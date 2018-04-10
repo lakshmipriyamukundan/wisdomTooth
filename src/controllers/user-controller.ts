@@ -3,6 +3,7 @@ import User from '../models/User';
 import * as bcrypt from 'bcrypt';
 import * as jwt from 'jsonwebtoken';
 import * as jwtConstant from '../../src/jwt-token.json';
+import * as lme from 'lme';
 
 const { validationResult } = require('express-validator/check');
 const { matchedData } = require('express-validator/filter');
@@ -97,7 +98,7 @@ public static login: RequestHandler = async (req, res) => {
     return res.status(200).send({
         status: 'Success',
         data: user
-    })
+    });
 
     // const isUser: Boolean = bcrypt.compare(user.password, req.body.password);
 
